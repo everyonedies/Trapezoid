@@ -4,8 +4,8 @@ namespace Trapezoid
 {
     struct Point
     {
-        public int X;
-        public int Y;
+        public double X;
+        public double Y;
     }
 
     class Program
@@ -22,7 +22,8 @@ namespace Trapezoid
         public Point Point2;
         public Point Point3;
         public Point Point4;
-        //private bool _isAllPointInit;
+        private bool _isAllPointInit = false;
+        private bool _isTrapezoid = false;
 
         Trapezoid()
         {
@@ -47,7 +48,7 @@ namespace Trapezoid
 
         public bool IsIsosceles()
         {
-            return ;
+            return CalcDistanceBetweenPoints(Point1, Point3) == CalcDistanceBetweenPoints(Point2, Point4);
         }
 
         public bool IsTrapezoid()
@@ -64,7 +65,8 @@ namespace Trapezoid
 
         public double Perimeter()
         {
-            return 1;
+            return CalcDistanceBetweenPoints(Point1, Point2) + CalcDistanceBetweenPoints(Point2, Point3)
+                 + CalcDistanceBetweenPoints(Point3, Point4) + CalcDistanceBetweenPoints(Point4, Point1);
         }
 
         public double Square()
@@ -74,7 +76,7 @@ namespace Trapezoid
 
         private double CalcDistanceBetweenPoints(Point point1, Point point2)
         {
-            return Math.Sqrt((point2.X - point1.X)^2 + (point2.Y - point1.Y) ^ 2);
+            return Math.Sqrt(Math.Pow((point2.X - point1.X), 2) + Math.Pow((point2.Y - point1.Y), 2));
         }
     }
 }
